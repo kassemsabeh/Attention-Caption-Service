@@ -1,7 +1,7 @@
-# Object Detection Service
-This service is responsible for handling object detection on image streams and the output is a vekg of each image.
+# Attention Caption Service
+This service is responsible for image captioning using an attention network on image streams and the output is a vekg of each image.
 
-It should be capable of running any Tensorflow 1.12-1.14 object detection trained on COCO dataset from the [model zoo](https://github.com/tensorflow/models/blob/r1.12.0/research/object_detection/g3doc/detection_model_zoo.md) (The ones that output masks were not tested.)
+
 
 # Commands Stream
 ## Inputs
@@ -22,9 +22,6 @@ Expect an data event with at least the following fields, as the following exampl
     ],
     "data_path": [],
     "vekg": {},
-    "width": 640,
-    "height": 480,
-    "color_channels": "BGR"
 }
 ```
 
@@ -36,9 +33,7 @@ Enrich the event data with the following fields, as the following example:
             "02fad514-6c93-4b09-969b-666e9cd52799",
              {
                  "id": "02fad514-6c93-4b09-969b-666e9cd52799",
-                 "label": "car",
-                 "confidence": 1.0,
-                 "bounding_box": [0.0, 1.0, 2.0,3.0]
+                 "caption": "car moving down the street",
               }
         ],
     ]
