@@ -28,8 +28,8 @@ class AttentionCaptionService(BaseTracerService):
             tracer=tracer,
         )
         self.cmd_validation_fields = ['id', 'action']
-        #self.data_validation_fields = ['id', 'image_url', 'data_flow', 'data_path', 'width', 'height', 'color_channels']
-        self.data_validation_fields = ['id', 'image_url', 'data_flow', 'data_path']
+        self.data_validation_fields = ['id', 'image_url', 'data_flow', 'data_path', 'width', 'height', 'color_channels']
+        #self.data_validation_fields = ['id', 'image_url', 'data_flow', 'data_path']
 
         self.fs_client = file_storage_cli
     
@@ -51,13 +51,13 @@ class AttentionCaptionService(BaseTracerService):
     @timer_logger
     def get_event_data_image_ndarray(self, event_data):
         img_key = event_data['image_url']
-        #width = event_data['width']
-        #height = event_data['height']
-        #color_channels = event_data['color_channels']
-        #n_channels = len(color_channels)
-        #nd_shape = (int(height), int(width), n_channels)
-        #image_nd_array = self.fs_client.get_image_ndarray_by_key_and_shape(img_key, nd_shape)
-        return img_key
+        width = event_data['width']
+        height = event_data['height']
+        color_channels = event_data['color_channels']
+        n_channels = len(color_channels)
+        nd_shape = (int(height), int(width), n_channels)
+        image_nd_array = self.fs_client.get_image_ndarray_by_key_and_shape(img_key, nd_shape)
+        return image_nd_array
     
     @timer_logger
     def extract_content(self, event_data):
